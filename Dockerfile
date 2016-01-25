@@ -12,6 +12,16 @@ RUN apt-get -q update && \
 
 ENV HOME /home/yeoman
 
+# Hubot
+ENV HUBOT_SLACK_TOKEN=""
+
+# Hubot: hubot-maps
+ENV HUBOT_GOOGLE_API_KEY=""
+
+# Hubot: weather.coffee
+ENV HUBOT_WEATHER_CELSIUS=true
+ENV HUBOT_FORECAST_API_KEY=""
+
 USER yeoman
 
 WORKDIR /home/yeoman
