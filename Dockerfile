@@ -18,6 +18,8 @@ WORKDIR /home/yeoman
 
 RUN git clone https://github.com/SeerUK/hubot-slack.git hubot && \
     cd hubot && \
+    git fetch -a && \
+    git reset origin/master --hard && \
     npm install
 
 CMD cd hubot; bin/hubot --adapter slack
