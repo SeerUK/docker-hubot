@@ -1,15 +1,10 @@
 FROM node:boron
 MAINTAINER Elliot Wright <elliot@elliotwright.co>
 
-ENV HOME /home/yeoman
 ENV HUBOT_SLACK_TOKEN=""
 
 # Hubot: hubot-maps
 ENV HUBOT_GOOGLE_API_KEY=""
-
-# Hubot: hubot-microsoft-translator
-ENV HUBOT_MICROSOFT_TRANSLATOR_CLIENT_ID=""
-ENV HUBOT_MICROSOFT_TRANSLATOR_CLIENT_SECRET=""
 
 # Hubot: weather.coffee
 ENV HUBOT_WEATHER_CELSIUS=true
@@ -25,14 +20,17 @@ RUN set -x \
     && adduser --disabled-password --gecos "" yeoman \
     && echo "yeoman ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
+ENV HOME /home/yeoman
+
 USER yeoman
 
 WORKDIR /home/yeoman
 
-RUN git clone https://github.com/SeerUK/hubot-slack.git hubot \
-    cd hubot \
-    git fetch -a \
-    git reset origin/master --hard \
-    npm install
+RUN set -x \
+    && git clone https://github.com/SeerUK/hubot-slack.git hubot \
+    && cd hubot \
+    && git fetch -a \
+    && git reset origin/master --hard \
+    && npm install
 
 CMD cd hubot; bin/hubot --adapter slack
