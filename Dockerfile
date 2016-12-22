@@ -1,6 +1,7 @@
 FROM node:boron
 MAINTAINER Elliot Wright <elliot@elliotwright.co>
 
+ENV HUBOT_NAME="hubot"
 ENV HUBOT_SLACK_TOKEN=""
 
 # Hubot: hubot-maps
@@ -33,4 +34,4 @@ RUN set -x \
     && git reset origin/master --hard \
     && npm install
 
-CMD cd hubot; bin/hubot --adapter slack
+CMD cd hubot; bin/hubot -n ${HUBOT_NAME} --adapter slack
