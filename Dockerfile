@@ -11,6 +11,9 @@ ENV HUBOT_GOOGLE_API_KEY=""
 ENV HUBOT_WEATHER_UNITS="metric"
 ENV HUBOT_OWM_APIKEY=""
 
+# Hubot: hubot-pearson-dictionary
+ENV PEARSON_API_KEY=""
+
 RUN set -x \
     && apt-get -q update \
     && apt-get -qy install git-core redis-server \
